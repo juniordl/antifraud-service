@@ -10,9 +10,10 @@ namespace TransactionServices.Infrastructure;
 
 public static class IoCExtensions
 {
+    private const string ConnectionName = "PostgresDb";
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, KafkaConfiguration kafkaConfiguration)
     {
-        var connectionString = configuration.GetConnectionString("PostgresDb");
+        var connectionString = configuration.GetConnectionString(ConnectionName);
         services.AddDbContext<TransactionDbContext>(op => op.UseNpgsql(connectionString));
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddKafka(kafkaConfiguration); 
