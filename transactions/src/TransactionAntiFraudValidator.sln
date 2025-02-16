@@ -28,6 +28,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Application", "Services\AntiFraudService\AntiFraudService.Application\AntiFraudService.Application.csproj", "{FA63CA9E-BE6E-48C6-AD72-8327322EAB30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployments", "Deployments", "{E122D67F-9FA8-433A-B88B-74B1ABFE780C}"
+	ProjectSection(SolutionItems) = preProject
+		Deployments\docker-compose.yml = Deployments\docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
