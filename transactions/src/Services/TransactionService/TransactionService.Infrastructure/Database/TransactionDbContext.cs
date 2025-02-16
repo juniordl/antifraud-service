@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using TransactionService.Domain;
 using TransactionServices.Infrastructure.Database.Configurations;
 

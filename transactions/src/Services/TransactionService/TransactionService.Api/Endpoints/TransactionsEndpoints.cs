@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransactionServices.Application.Transaction.Commands;
 using TransactionServices.Application.Transaction.Dto;
 using TransactionServices.Application.Transaction.Events;
+using TransactionServices.Application.Transaction.Queries;
 
 namespace TransactionServices.Endpoints;
 
@@ -21,13 +22,17 @@ public static class TransactionsEndpoints
             {
                 return Results.Ok(await mediator.Send(new CreateTransactionCommandRequest(transaction)));
             })
-            .Produces<TransactionCreatedEvent>(StatusCodes.Status200OK)
+            .Produces<CreateTransactionCommandResponse>()
             .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
             .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
         
-        routeGroupBuilder.MapGet("/{transactionId}", (Guid id) =>
-        {
-            return Results.Ok(id);
-        });
+        routeGroupBuilder
+            .MapGet("/{id}", async ([FromServices] IMediator mediator, Guid transactionId) =>
+            {
+                return Results.Ok(await mediator.Send(new GetTransactionQueryRequest(transactionId)));
+            })
+            .Produces<GetTransactionQueryResponse>()
+            .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
+            .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
     }
 }

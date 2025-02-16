@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployments", "Deployments"
 		Deployments\docker-compose.yml = Deployments\docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.Application.Test", "Services\TransactionService\TransactionService.Application.Test\TransactionService.Application.Test.csproj", "{5F4F5E38-785D-480E-8BDB-D1837D9CAFB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Application.Test", "Services\AntiFraudService\AntiFraudService.Application.Test\AntiFraudService.Application.Test.csproj", "{9EB1B942-A5AC-4ECD-A649-95F04FCD4263}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{FA63CA9E-BE6E-48C6-AD72-8327322EAB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA63CA9E-BE6E-48C6-AD72-8327322EAB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA63CA9E-BE6E-48C6-AD72-8327322EAB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4F5E38-785D-480E-8BDB-D1837D9CAFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4F5E38-785D-480E-8BDB-D1837D9CAFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4F5E38-785D-480E-8BDB-D1837D9CAFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4F5E38-785D-480E-8BDB-D1837D9CAFB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB1B942-A5AC-4ECD-A649-95F04FCD4263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB1B942-A5AC-4ECD-A649-95F04FCD4263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB1B942-A5AC-4ECD-A649-95F04FCD4263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB1B942-A5AC-4ECD-A649-95F04FCD4263}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{67B016BD-37F6-4BDA-95EB-7F801C7BF41B} = {58AD98B7-5888-488B-AB03-A8C526BF8526}
@@ -93,5 +105,7 @@ Global
 		{58642EC7-155A-4914-99CC-8D5F858242D8} = {EA8877A2-8AD1-44EE-BCED-4D0ED44A381A}
 		{6AE5E6D0-FB79-4129-A9AB-00A9BCCB5130} = {EA8877A2-8AD1-44EE-BCED-4D0ED44A381A}
 		{FA63CA9E-BE6E-48C6-AD72-8327322EAB30} = {EA8877A2-8AD1-44EE-BCED-4D0ED44A381A}
+		{5F4F5E38-785D-480E-8BDB-D1837D9CAFB4} = {67B016BD-37F6-4BDA-95EB-7F801C7BF41B}
+		{9EB1B942-A5AC-4ECD-A649-95F04FCD4263} = {EA8877A2-8AD1-44EE-BCED-4D0ED44A381A}
 	EndGlobalSection
 EndGlobal
