@@ -1,4 +1,4 @@
-namespace TransactionServices.Application.Interfaces.Infrastructure.Messaging;
+namespace Common.Messaging.Core.Interfaces;
 
 public interface IEventBus
 {

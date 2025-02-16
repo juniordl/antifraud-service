@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Common.Messaging.Kafka\Common.Messaging.Kafka.csproj" />
       <ProjectReference Include="..\TransactionServices.Application\TransactionServices.Application.csproj" />
       <ProjectReference Include="..\TransactionServices.Domain\TransactionServices.Domain.csproj" />
     </ItemGroup>

@@ -1,5 +1,5 @@
+using Common.Messaging.Core.Interfaces;
 using MediatR;
-using TransactionServices.Application.Interfaces.Infrastructure.Messaging;
 using TransactionServices.Application.Interfaces.Infrastructure.Repositories;
 using TransactionServices.Application.Transaction.Dto;
 using TransactionServices.Application.Transaction.Events;

@@ -1,36 +1,34 @@
 using System.Text.Json;
+using Common.Messaging.Core.Interfaces;
 using Confluent.Kafka;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TransactionServices.Application.Interfaces;
-using TransactionServices.Application.Interfaces.Infrastructure.Messaging;
-using TransactionServices.Application.Transaction.Events;
 
-namespace TransactionServices.Infrastructure.Messaging;
+namespace Common.Messaging.Kafka.Implementations;
 
-public class KafkaEventConsumer: IEventConsumer
+public class KafkaEventConsumer : IEventConsumer
 {
     private readonly IConsumer<Ignore, string> _consumer;
     private readonly ILogger<KafkaEventConsumer> _logger;
     private readonly IServiceScopeFactory _serviceScopeFactory;
 
-    public KafkaEventConsumer(ILogger<KafkaEventConsumer> logger, IServiceScopeFactory serviceScopeFactory)
+    public KafkaEventConsumer(ILogger<KafkaEventConsumer> logger, KafkaConfiguration configuration, IServiceScopeFactory serviceScopeFactory)
     {
         _logger = logger;
         _serviceScopeFactory = serviceScopeFactory;
         var config = new ConsumerConfig
         {
-            BootstrapServers = "localhost:9092",
-            GroupId = "evaluated-transaction-consumer-group",
-            AutoOffsetReset = AutoOffsetReset.Earliest,
+            BootstrapServers = configuration.Server,
+            GroupId = configuration.ConsumerGroup,
+            AutoOffsetReset = Enum.Parse<AutoOffsetReset>(configuration.Offset),
             EnableAutoCommit = false
         };
-        
+            
         _consumer = new ConsumerBuilder<Ignore, string>(config).Build();
-        _consumer.Subscribe("evaluated-transactions-topic");
+        _consumer.Subscribe(configuration.ConsumerTopic);
     }
-    
-    public async Task ConsumeAsync(CancellationToken cancellationToken)
+
+    public async Task ConsumeAsync<T>(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Kafka Consumer starting...");
 
@@ -41,26 +39,26 @@ public class KafkaEventConsumer: IEventConsumer
                 try
                 {
                     var consumeResult = _consumer.Consume(cancellationToken);
-                    var transaction = JsonSerializer.Deserialize<TransactionEvaluatedEvent>(consumeResult.Message.Value);
-
-                    //TODO: Improve dependency inyecction
+                    var @event = JsonSerializer.Deserialize<T>(consumeResult.Message.Value);
+                    
                     using (var scope = _serviceScopeFactory.CreateScope())
                     {
-                        var transactionHandler = scope.ServiceProvider.GetRequiredService<ITransactionHandler>();
-                        if (transaction != null) await transactionHandler.Handle(transaction);
+                        var eventDispatcher = scope.ServiceProvider.GetRequiredService<IEventDispatcher>();
+                        await eventDispatcher.DispatchAsync(@event, cancellationToken);
                     }
                     
                     _consumer.Commit(consumeResult);
                 }
                 catch (ConsumeException ex)
                 {
-                    _logger.LogError(ex.Message);
+                    //HACK: Do nothing
                 }
             }
         }
         catch (OperationCanceledException)
         {
-            _logger.LogInformation("Kafka Consumer stopped.");
+            //_logger.LogInformation("Kafka Consumer stopped.");
+            //HACK: Do nothing
         }
         finally
         {

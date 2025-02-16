@@ -11,6 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Common.Messaging.Contracts\Common.Messaging.Contracts.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Common.Messaging.Core\Common.Messaging.Core.csproj" />
       <ProjectReference Include="..\TransactionServices.Domain\TransactionServices.Domain.csproj" />
     </ItemGroup>
 

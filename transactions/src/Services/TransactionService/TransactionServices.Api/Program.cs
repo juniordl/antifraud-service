@@ -1,5 +1,7 @@
+using Common.Messaging.Core.Interfaces;
+using Common.Messaging.Kafka;
 using TransactionServices.Application;
-using TransactionServices.Application.Interfaces.Infrastructure.Messaging;
+using TransactionServices.Application.Transaction.Events;
 using TransactionServices.Extensions;
 using TransactionServices.Infrastructure;
 
@@ -9,7 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+
+var kafkaConfiguration = builder.Configuration.GetSection(KafkaConfiguration.SectionName).Get<KafkaConfiguration>();
+
+builder.Services.AddInfrastructure(builder.Configuration, kafkaConfiguration ?? throw new InvalidOperationException());
 
 var app = builder.Build();
 
@@ -23,6 +28,6 @@ app.MapEndpoints();
 
 var kafkaConsumer = app.Services.GetRequiredService<IEventConsumer>();
 var cts = new CancellationTokenSource();
-Task.Run(() => kafkaConsumer.ConsumeAsync(cts.Token));
+Task.Run(() => kafkaConsumer.ConsumeAsync<TransactionValidatedEvent>(cts.Token));
 
 app.Run();
