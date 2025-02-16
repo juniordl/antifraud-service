@@ -5,19 +5,27 @@ EXPOSE 8080
 EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["AntiFraudService/AntiFraudService.csproj", "AntiFraudService/"]
-RUN dotnet restore "AntiFraudService/AntiFraudService.csproj"
-COPY . .
-WORKDIR "/src/AntiFraudService"
-RUN dotnet build "AntiFraudService.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "AntiFraudService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+COPY ../../../Services/AntiFraudService/AntiFraudService.Api/AntiFraudService.Api.csproj /AntiFraudService.Api/.
+COPY ../../../Services/AntiFraudService/AntiFraudService.Application/AntiFraudService.Application.csproj /AntiFraudService.Application/.
+COPY ../../../Services/AntiFraudService/AntiFraudService.Infrastructure/AntiFraudService.Infrastructure.csproj /AntiFraudService.Infrastructure/.
+
+COPY ../../../Shared/Common.Messaging.Contracts/Common.Messaging.Contracts.csproj /Shared/Common.Messaging.Contracts/.
+COPY ../../../Shared/Common.Messaging.Core/Common.Messaging.Core.csproj /Shared/Common.Messaging.Core/.
+COPY ../../../Shared/Common.Messaging.Kafka/Common.Messaging.Kafka.csproj /Shared/Common.Messaging.Kafka/.
+
+RUN dotnet restore "/AntiFraudService.Api/AntiFraudService.Api.csproj"
+
+COPY ../../../ ./
+
+WORKDIR /src/Services/AntiFraudService/AntiFraudService.Api
+RUN dotnet publish -c Release -o /out
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "AntiFraudService.dll"]
+COPY --from=build /out ./
+
+ENTRYPOINT ["dotnet", "AntiFraudService.Api.dll"]
+

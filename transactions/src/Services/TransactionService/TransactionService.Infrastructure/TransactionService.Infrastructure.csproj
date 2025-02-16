@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>TransactionServices.Infrastructure</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,8 +14,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Common.Messaging.Kafka\Common.Messaging.Kafka.csproj" />
-      <ProjectReference Include="..\TransactionServices.Application\TransactionServices.Application.csproj" />
-      <ProjectReference Include="..\TransactionServices.Domain\TransactionServices.Domain.csproj" />
+      <ProjectReference Include="..\TransactionService.Application\TransactionService.Application.csproj" />
+      <ProjectReference Include="..\TransactionService.Domain\TransactionService.Domain.csproj" />
     </ItemGroup>
 
 </Project>

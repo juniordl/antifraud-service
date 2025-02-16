@@ -20,8 +20,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TransactionServices.Application\TransactionServices.Application.csproj" />
-      <ProjectReference Include="..\TransactionServices.Infrastructure\TransactionServices.Infrastructure.csproj" />
+      <ProjectReference Include="..\TransactionService.Application\TransactionService.Application.csproj" />
+      <ProjectReference Include="..\TransactionService.Infrastructure\TransactionService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

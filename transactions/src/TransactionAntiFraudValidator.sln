@@ -4,13 +4,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{58
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransactionService", "TransactionService", "{67B016BD-37F6-4BDA-95EB-7F801C7BF41B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionServices.Api", "Services\TransactionService\TransactionServices.Api\TransactionServices.Api.csproj", "{8D5B7F86-876E-4230-932A-3E6F186F1392}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.Api", "Services\TransactionService\TransactionService.Api\TransactionService.Api.csproj", "{8D5B7F86-876E-4230-932A-3E6F186F1392}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionServices.Domain", "Services\TransactionService\TransactionServices.Domain\TransactionServices.Domain.csproj", "{F3255F6C-F82B-4617-A0D0-DA7C3C12AAA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.Domain", "Services\TransactionService\TransactionService.Domain\TransactionService.Domain.csproj", "{F3255F6C-F82B-4617-A0D0-DA7C3C12AAA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionServices.Application", "Services\TransactionService\TransactionServices.Application\TransactionServices.Application.csproj", "{86F36D1F-E36A-4E56-9F55-836E838F9AF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.Application", "Services\TransactionService\TransactionService.Application\TransactionService.Application.csproj", "{86F36D1F-E36A-4E56-9F55-836E838F9AF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionServices.Infrastructure", "Services\TransactionService\TransactionServices.Infrastructure\TransactionServices.Infrastructure.csproj", "{5D101504-0E84-4133-B691-2ACBEAC2B5A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.Infrastructure", "Services\TransactionService\TransactionService.Infrastructure\TransactionService.Infrastructure.csproj", "{5D101504-0E84-4133-B691-2ACBEAC2B5A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{E935BF89-7ADC-4169-B4D0-0D19105D62C2}"
 EndProject
