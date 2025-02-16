@@ -38,3 +38,31 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
+  transaction-api:
+    container_name: transaction-api
+    build:
+      context: ..
+      dockerfile: Services/TransactionService/TransactionService.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8081
+    depends_on:
+      - postgres
+      - kafka
+      - zookeeper
+    ports:
+      - "8081:8081"
+  antifraud-api:
+    container_name: antifraud-api
+    build:
+      context: ..
+      dockerfile: Services/AntiFraudService/AntiFraudService.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8082
+    depends_on:
+      - redis
+      - kafka
+      - zookeeper
+    ports:
+      - "8082:8082"

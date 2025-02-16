@@ -1,4 +1,6 @@
 using Common.Messaging.Kafka;
+using Confluent.Kafka;
+using HealthChecks.Kafka;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,16 @@ public static class IoCExtensions
         services.AddDbContext<TransactionDbContext>(op => op.UseNpgsql(connectionString));
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddKafka(kafkaConfiguration); 
+        
+        services.AddHealthChecks()
+            .AddKafka(new KafkaHealthCheckOptions
+            {
+                Configuration = new ProducerConfig() { BootstrapServers = kafkaConfiguration.Server},
+                Topic = kafkaConfiguration.ProducerTopic
+            });
+        
+        services.AddHealthChecks().AddNpgSql(connectionString ?? throw new InvalidCastException());
+        
         return services;
     }
 }

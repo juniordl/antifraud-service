@@ -1,5 +1,7 @@
 using Common.Messaging.Core.Interfaces;
 using Common.Messaging.Kafka;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using TransactionServices.Application;
 using TransactionServices.Application.Transaction.Events;
 using TransactionServices.Extensions;
@@ -25,6 +27,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapEndpoints();
+
+app.MapHealthChecks("/health", new HealthCheckOptions()
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 var kafkaConsumer = app.Services.GetRequiredService<IEventConsumer>();
 var cts = new CancellationTokenSource();
