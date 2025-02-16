@@ -1,9 +1,10 @@
 using AntiFraudService.Application.Interfaces.Cache;
+using Microsoft.Extensions.Logging;
 using TransactionServices.Application.Transaction.Events;
 
 namespace AntiFraudService.Application.Services;
 
-public class AntiFraudControlService(ICacheRepository cacheRepository): IAntiFraudControlService
+public class AntiFraudControlService(ICacheRepository cacheRepository, ILogger<AntiFraudControlService> logger): IAntiFraudControlService
 {
     private const int MaxTransactionValue = 2000;
     private const int MaxTransactionAccumulatedValuePerDay = 20000;
@@ -41,6 +42,10 @@ public class AntiFraudControlService(ICacheRepository cacheRepository): IAntiFra
 
         var ttl = await cacheRepository.GetTimeToLiveAsync(transaction.SourceAccountId.ToString());
         await cacheRepository.SetAsync(transaction.SourceAccountId.ToString(), accumulated.Value, ttl!.Value);
+        
+        logger.LogInformation("Updated in cache for AccountId {SourceAccountId} accumulated value {Value} during: {Ttl}",
+            transaction.SourceAccountId.ToString(), accumulated.Value, ttl.Value);
+        
         return false;
     }
 

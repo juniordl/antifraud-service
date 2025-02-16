@@ -21,7 +21,8 @@ public class KafkaEventConsumer : IEventConsumer
             BootstrapServers = configuration.Server,
             GroupId = configuration.ConsumerGroup,
             AutoOffsetReset = Enum.Parse<AutoOffsetReset>(configuration.Offset),
-            EnableAutoCommit = false
+            EnableAutoCommit = false,
+            MetadataMaxAgeMs = 10000
         };
             
         _consumer = new ConsumerBuilder<Ignore, string>(config).Build();
@@ -51,14 +52,13 @@ public class KafkaEventConsumer : IEventConsumer
                 }
                 catch (ConsumeException ex)
                 {
-                    //HACK: Do nothing
+                    _logger.LogError(ex, "Error on consuming");
                 }
             }
         }
-        catch (OperationCanceledException)
+        catch (OperationCanceledException ex)
         {
-            //_logger.LogInformation("Kafka Consumer stopped.");
-            //HACK: Do nothing
+            _logger.LogError(ex, "Kafka Consumer stopped.");
         }
         finally
         {

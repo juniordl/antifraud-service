@@ -1,10 +1,11 @@
 using AntiFraudService.Application.Services;
 using Common.Messaging.Core.Interfaces;
+using Microsoft.Extensions.Logging;
 using TransactionServices.Application.Transaction.Events;
 
 namespace AntiFraudService.Application.Events;
 
-public class TransactionCreatedEventHandler(IEventBus eventBus, IAntiFraudControlService antiFraudControlService) : IEventHandler<TransactionCreatedEvent>
+public class TransactionCreatedEventHandler(IEventBus eventBus, IAntiFraudControlService antiFraudControlService, ILogger<TransactionCreatedEventHandler> logger) : IEventHandler<TransactionCreatedEvent>
 {
     public async Task HandleAsync(TransactionCreatedEvent message, CancellationToken cancellationToken)
     {
@@ -17,5 +18,7 @@ public class TransactionCreatedEventHandler(IEventBus eventBus, IAntiFraudContro
         };
 
         await eventBus.PublishAsync(result, "evaluated-transactions-topic");
+        
+        logger.LogInformation("TransactionCreatedEvent handled transaction {Id}", message.TransactionId);
     }
 }
