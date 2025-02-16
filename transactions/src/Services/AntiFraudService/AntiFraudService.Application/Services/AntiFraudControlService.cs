@@ -1,4 +1,3 @@
-using AntiFraudService.Application.Events;
 using AntiFraudService.Application.Interfaces.Cache;
 using TransactionServices.Application.Transaction.Events;
 
@@ -11,10 +10,13 @@ public class AntiFraudControlService(ICacheRepository cacheRepository): IAntiFra
     public async Task<bool> IsApprovedTransaction(TransactionCreatedEvent transaction)
     {
         var isMaxValueExceeded = MaxValueTransactionExceed(transaction);
+        if (isMaxValueExceeded)
+        {
+            return !isMaxValueExceeded;
+        }
+        
         var isAccumulatedValueExceeded = await TransactionsAccumulatedValuePerDayExceed(transaction);
-
-        return !isMaxValueExceeded && !isAccumulatedValueExceeded;
-
+        return !isAccumulatedValueExceeded;
     }
 
     private static bool MaxValueTransactionExceed(TransactionCreatedEvent transaction)
