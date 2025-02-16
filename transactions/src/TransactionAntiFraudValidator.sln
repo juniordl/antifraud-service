@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Messaging.Contracts"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AntiFraudService", "AntiFraudService", "{EA8877A2-8AD1-44EE-BCED-4D0ED44A381A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService", "Services\AntiFraudService\AntiFraudService\AntiFraudService.csproj", "{58642EC7-155A-4914-99CC-8D5F858242D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Api", "Services\AntiFraudService\AntiFraudService.Api\AntiFraudService.Api.csproj", "{58642EC7-155A-4914-99CC-8D5F858242D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Infrastructure", "Services\AntiFraudService\AntiFraudService.Infrastructure\AntiFraudService.Infrastructure.csproj", "{6AE5E6D0-FB79-4129-A9AB-00A9BCCB5130}"
 EndProject
