@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService", "AntiFraudService\AntiFraudService.csproj", "{73DDBDD2-DC45-49C0-ADCE-DA7464CA5CDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Infrastructure", "AntiFraudService.Infrastructure\AntiFraudService.Infrastructure.csproj", "{AEFC6849-9001-46CD-85F3-1C808A439B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraudService.Application", "AntiFraudService.Application\AntiFraudService.Application.csproj", "{6EA70285-C25B-43FD-A829-6DFD541E5400}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73DDBDD2-DC45-49C0-ADCE-DA7464CA5CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73DDBDD2-DC45-49C0-ADCE-DA7464CA5CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73DDBDD2-DC45-49C0-ADCE-DA7464CA5CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73DDBDD2-DC45-49C0-ADCE-DA7464CA5CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEFC6849-9001-46CD-85F3-1C808A439B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEFC6849-9001-46CD-85F3-1C808A439B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEFC6849-9001-46CD-85F3-1C808A439B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEFC6849-9001-46CD-85F3-1C808A439B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA70285-C25B-43FD-A829-6DFD541E5400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA70285-C25B-43FD-A829-6DFD541E5400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA70285-C25B-43FD-A829-6DFD541E5400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA70285-C25B-43FD-A829-6DFD541E5400}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

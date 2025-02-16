@@ -8,12 +8,12 @@
 
     <ItemGroup>
       <PackageReference Include="Confluent.Kafka" Version="2.8.0" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.2" />
+      <PackageReference Include="StackExchange.Redis" Version="2.8.24" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TransactionServices.Application\TransactionServices.Application.csproj" />
-      <ProjectReference Include="..\TransactionServices.Domain\TransactionServices.Domain.csproj" />
+      <ProjectReference Include="..\AntiFraudService.Application\AntiFraudService.Application.csproj" />
     </ItemGroup>
 
 </Project>

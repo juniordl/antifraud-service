@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>TransactionServices</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,8 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TransactionServices.Application\TransactionServices.Application.csproj" />
-      <ProjectReference Include="..\TransactionServices.Infrastructure\TransactionServices.Infrastructure.csproj" />
+      <ProjectReference Include="..\AntiFraudService.Infrastructure\AntiFraudService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

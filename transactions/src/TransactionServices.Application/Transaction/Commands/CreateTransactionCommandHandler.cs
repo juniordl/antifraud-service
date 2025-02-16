@@ -1,10 +1,12 @@
 using MediatR;
+using TransactionServices.Application.Interfaces.Infrastructure.Messaging;
 using TransactionServices.Application.Interfaces.Infrastructure.Repositories;
 using TransactionServices.Application.Transaction.Dto;
+using TransactionServices.Application.Transaction.Events;
 
 namespace TransactionServices.Application.Transaction.Commands;
 
-public class CreateTransactionCommandHandler(ITransactionRepository transactionRepository)
+public class CreateTransactionCommandHandler(ITransactionRepository transactionRepository, IEventBus eventBus)
     : IRequestHandler<CreateTransactionCommandRequest, TransactionDto>
 {
     public async Task<TransactionDto> Handle(CreateTransactionCommandRequest request, CancellationToken cancellationToken)
@@ -18,6 +20,17 @@ public class CreateTransactionCommandHandler(ITransactionRepository transactionR
         };
         
         await transactionRepository.Create(entity);
+
+        var @event = new TransactionCreatedEvent()
+        {
+            TransactionId = entity.Id,
+            SourceAccountId = entity.SourceAccountId,
+            TransferAccountId = entity.TransferAccountId,
+            Value = entity.Value
+        };
+        
+        await eventBus.PublishAsync(@event, "created-transactions-topic");
+        
         return request.Transaction;
     }
 }
