@@ -31,7 +31,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployments", "Deployments", "{E122D67F-9FA8-433A-B88B-74B1ABFE780C}"
 	ProjectSection(SolutionItems) = preProject
 		Deployments\docker-compose.yml = Deployments\docker-compose.yml
-		Deployments\create-topics.sh = Deployments\create-topics.sh
 	EndProjectSection
 EndProject
 Global
