@@ -1,3 +1,4 @@
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -7,7 +8,7 @@ using TransactionServices.Application.Transaction.Events;
 
 namespace TransactionServices.Application.Transaction.Commands;
 
-public class CreateTransactionCommandHandler(ITransactionRepository transactionRepository, IEventBus eventBus, ILogger<CreateTransactionCommandHandler> logger)
+public class CreateTransactionCommandHandler(ITransactionRepository transactionRepository, IEventBus eventBus, ILogger<CreateTransactionCommandHandler> logger, KafkaConfiguration kafkaConfiguration)
     : IRequestHandler<CreateTransactionCommandRequest, CreateTransactionCommandResponse>
 {
     public async Task<CreateTransactionCommandResponse> Handle(CreateTransactionCommandRequest request, CancellationToken cancellationToken)
@@ -32,7 +33,7 @@ public class CreateTransactionCommandHandler(ITransactionRepository transactionR
             Value = entity.Value
         };
         
-        await eventBus.PublishAsync(@event, "created-transactions-topic");
+        await eventBus.PublishAsync(@event, kafkaConfiguration.ProducerTopic);
         
         return new CreateTransactionCommandResponse(entity);
     }

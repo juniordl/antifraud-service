@@ -1,3 +1,4 @@
+using Common.Messaging.Core;
 using Common.Messaging.Kafka;
 using Confluent.Kafka;
 using HealthChecks.Kafka;

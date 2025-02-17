@@ -1,5 +1,6 @@
 using AntiFraudService.Application.Interfaces.Cache;
 using AntiFraudService.Infrastructure.Cache;
+using Common.Messaging.Core;
 using Common.Messaging.Kafka;
 using Confluent.Kafka;
 using HealthChecks.Kafka;

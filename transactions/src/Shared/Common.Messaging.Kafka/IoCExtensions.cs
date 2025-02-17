@@ -1,4 +1,5 @@
 
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using Common.Messaging.Kafka.Implementations;
 using Microsoft.Extensions.DependencyInjection;

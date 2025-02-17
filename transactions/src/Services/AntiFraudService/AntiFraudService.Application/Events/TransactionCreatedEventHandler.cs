@@ -1,11 +1,12 @@
 using AntiFraudService.Application.Services;
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using Microsoft.Extensions.Logging;
 using TransactionServices.Application.Transaction.Events;
 
 namespace AntiFraudService.Application.Events;
 
-public class TransactionCreatedEventHandler(IEventBus eventBus, IAntiFraudControlService antiFraudControlService, ILogger<TransactionCreatedEventHandler> logger) : IEventHandler<TransactionCreatedEvent>
+public class TransactionCreatedEventHandler(IEventBus eventBus, IAntiFraudControlService antiFraudControlService, ILogger<TransactionCreatedEventHandler> logger, KafkaConfiguration kafkaConfiguration) : IEventHandler<TransactionCreatedEvent>
 {
     public async Task HandleAsync(TransactionCreatedEvent message, CancellationToken cancellationToken)
     {
@@ -17,7 +18,7 @@ public class TransactionCreatedEventHandler(IEventBus eventBus, IAntiFraudContro
             Approved = approved
         };
 
-        await eventBus.PublishAsync(result, "evaluated-transactions-topic");
+        await eventBus.PublishAsync(result, kafkaConfiguration.ProducerTopic);
         
         logger.LogInformation("TransactionCreatedEvent handled transaction {Id}", message.TransactionId);
     }

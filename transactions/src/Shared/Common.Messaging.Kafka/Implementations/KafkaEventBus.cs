@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using Confluent.Kafka;
 using Microsoft.Extensions.Logging;

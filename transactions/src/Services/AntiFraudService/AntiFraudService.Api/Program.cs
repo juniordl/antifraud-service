@@ -1,6 +1,7 @@
 using AntiFraudService.Application;
 using AntiFraudService.Infrastructure;
 using AntiFraudService.Infrastructure.Cache;
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using Common.Messaging.Kafka;
 using HealthChecks.UI.Client;

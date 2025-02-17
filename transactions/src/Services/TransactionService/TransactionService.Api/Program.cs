@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using Common.Messaging.Kafka;
 using HealthChecks.UI.Client;

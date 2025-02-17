@@ -1,3 +1,4 @@
+using Common.Messaging.Core;
 using Common.Messaging.Core.Interfaces;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,9 @@ public class CreateTransactionCommandHandlerShould
         _transactionRepository = new Mock<ITransactionRepository>();
         _eventBus = new Mock<IEventBus>();
         Mock<ILogger<CreateTransactionCommandHandler>> logger = new();
-        _handler = new CreateTransactionCommandHandler(_transactionRepository.Object, _eventBus.Object, logger.Object);
+        var kafkaConfiguration = new KafkaConfiguration()
+            { Server = "kafka:29092", ProducerTopic = "created-transactions-topic" };
+        _handler = new CreateTransactionCommandHandler(_transactionRepository.Object, _eventBus.Object, logger.Object, kafkaConfiguration);
     }
 
     [Fact]

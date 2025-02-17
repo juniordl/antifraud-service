@@ -1,4 +1,4 @@
-namespace Common.Messaging.Kafka;
+namespace Common.Messaging.Core;
 
 public class KafkaConfiguration
 {
